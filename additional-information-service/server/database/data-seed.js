@@ -1,7 +1,9 @@
-const faker = require('faker');
-const mongoose = require('mongoose');
-const House = require('./House.js');
-const db = require('./index.js');
+const faker = require("faker");
+const mongoose = require("mongoose");
+const House = require("./House.js");
+const db = require("./index.js");
+const fs = require("fs");
+const csv = require("fast-csv");
 
 const random = num => Math.ceil(Math.random() * num);
 
@@ -23,7 +25,7 @@ const zestHistory = () => {
     10000,
     7000,
     700,
-    -700,
+    -700
   ];
   let moreSlope = 0;
 
@@ -43,35 +45,71 @@ const zestHistory = () => {
   });
 };
 
+let count = 0;
+
 const seedFunc = () => {
-  let count = 0;
-  return Array.from({ length: 100 }, () => {
-    const id = count;
-    count++;
+  // let count = 0;
+  // return Array.from({ length: 100000 }, () => {
+  //   const id = count;
+  //   count++;
 
-    const zestimate = zestHistory();
-    return {
-      _id: id.toString(),
-      address: faker.address.streetAddress(),
-      city: faker.address.city(),
-      zip: 98100 + random(99),
-      zestimate,
-      beds: 3 + Math.floor(Math.random() * 2.5),
-      baths: 2.5 + 0.5 * Math.floor(Math.random() * 3),
-      sqFt: 1150 + 10 * random(20),
-      status: Math.random() < 0.5 ? 'For Sale' : 'Sold',
-      taxAssessment: zestimate[zestimate.length - 1] * 0.937,
-    };
+  //   const zestimate = zestHistory();
+  //   return {
+  //     _id: id.toString(),
+  //     address: faker.address.streetAddress(),
+  //     city: faker.address.city(),
+  //     zip: 98100 + random(99),
+  //     zestimate,
+  //     beds: 3 + Math.floor(Math.random() * 2.5),
+  //     baths: 2.5 + 0.5 * Math.floor(Math.random() * 3),
+  //     sqFt: 1150 + 10 * random(20),
+  //     status: Math.random() < 0.5 ? "For Sale" : "Sold",
+  //     taxAssessment: zestimate[zestimate.length - 1] * 0.937
+  //   };
+  // });
+
+  const id = count;
+  count++;
+
+  const zestimate = zestHistory();
+  return {
+    _id: id.toString(),
+    address: faker.address.streetAddress(),
+    city: faker.address.city(),
+    zip: 98100 + random(99),
+    zestimate,
+    beds: 3 + Math.floor(Math.random() * 2.5),
+    baths: 2.5 + 0.5 * Math.floor(Math.random() * 3),
+    sqFt: 1150 + 10 * random(20),
+    status: Math.random() < 0.5 ? "For Sale" : "Sold",
+    taxAssessment: zestimate[zestimate.length - 1] * 0.937
+  };
+};
+
+const makeCSV = () => {
+  let csvStream = csv.createWriteStream({ headers: true });
+  let writableStream = fs.createWriteStream("test.csv");
+
+  writableStream.on("finish", () => {
+    console.log("Write is Done.");
   });
+
+  csvStream.pipe(writableStream);
+  for (let i = 0; i < 1000000; i++) {
+    csvStream.write(seedFunc());
+  }
+  csvStream.end();
 };
 
-const seed = seedFunc();
-module.exports = seedFunc;
+makeCSV();
 
-const seedDatabase = () => {
-  House.create(seed)
-    .then(() => mongoose.connection.close())
-    .catch(err => console.error(err));
-};
+// const seed = seedFunc();
+// module.exports = seedFunc;
+// console.log(seed);
+// const seedDatabase = () => {
+//   House.create(seed)
+//     .then(() => mongoose.connection.close())
+//     .catch(err => console.error(err));
+// };
 
-seedDatabase();
+// seedDatabase();
