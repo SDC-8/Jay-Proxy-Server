@@ -2,7 +2,7 @@
   "name": "additional-information-service",
   "version": "1.0.0",
   "description": "additional information for Zill-Woah!",
-  "author": "Brian Louie",
+  "author": "Brian Louie, Jay Patrick De Guzman",
   "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
@@ -20,6 +20,7 @@
     "cassandra-driver": "^3.5.0",
     "cors": "^2.8.4",
     "express": "^4.16.4",
+    "express-cassandra": "^2.2.3",
     "express-graphql": "^0.6.12",
     "faker": "^4.1.0",
     "fast-csv": "^2.4.1",
