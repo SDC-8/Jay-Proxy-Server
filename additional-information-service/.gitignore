@@ -75,3 +75,5 @@
 Icon
 
 ./server/database/test.csv
+
+*.csv
