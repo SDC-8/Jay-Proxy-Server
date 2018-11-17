@@ -1,13 +1,14 @@
 module.exports = {
   fields: {
-    id: "text",
+    id: "int",
     address: "text",
     city: "text",
     zip: "int",
     beds: "float",
     baths: "float",
-    sqFt: "float",
-    status: "text"
+    sqft: "float",
+    status: "text",
+    taxassessment: "float"
   },
   key: ["id"]
 };
