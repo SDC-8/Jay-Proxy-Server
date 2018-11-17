@@ -6,6 +6,8 @@ const fs = require("fs");
 const csv = require("fast-csv");
 
 const random = num => Math.ceil(Math.random() * num);
+const randomBetween = (min, max) =>
+  Math.floor(Math.random() * (max - min - 1) + min);
 
 const zestHistory = () => {
   let total = 300000;
@@ -47,13 +49,13 @@ const zestHistory = () => {
 
 let count = 0;
 
-const seedFunc = () => {
+const seedFunc = i => {
   const id = count;
   count++;
 
   // const zestimate = zestHistory();
   return {
-    _id: id.toString(),
+    _id: id,
     address: `${faker.address.streetAddress()}`,
     city: `${faker.address.county()}`,
     zip: 98100 + random(99),
@@ -61,8 +63,8 @@ const seedFunc = () => {
     beds: 3 + Math.floor(Math.random() * 2.5),
     baths: 2.5 + 0.5 * Math.floor(Math.random() * 3),
     sqFt: 1150 + 10 * random(20),
-    status: `${Math.random() < 0.5 ? "For Sale" : "Sold"}`
-    // taxAssessment: zestimate[zestimate.length - 1] * 0.937
+    status: `${Math.random() < 0.5 ? "For Sale" : "Sold"}`,
+    taxAssessment: randomBetween(100000, 500000) * 0.937
   };
 };
 
@@ -76,22 +78,28 @@ const makeCSV = async () => {
   });
   csvStream.pipe(writableStream);
   for (let i = 0; i < 10000000; i++) {
-    // const ableToWrite = csvStream.write(seedFunc());
     csvStream.write(seedFunc());
-    // if (!ableToWrite) {
-    //   await new Promise(resolve => {
-    //     writableStream.once("drain", resolve);
-    //   });
-    // }
   }
   csvStream.end();
   console.timeEnd("makedata");
 };
 
-// const write = async (csvStream, writableStream) => {
-//   for (let j = 0; j < 1000000; j++) {
-//     await csvStream.write(seedFunc());
+// const makeArray = () => {
+//   let arr = [];
+//   for (let i = 0; i < 10000000; i++) {
+//     arr.push(seedFunc());
 //   }
+
+//   let transformStream = jsonstream.stringify();
+//   let outputStream = fs.createWriteStream("data.js");
+//   transformStream.pipe(outputStream);
+//   arr.forEach(transformStream.write);
+//   transformStream.end();
+
+//   outputStream.on("finish", () => {
+//     console.log("finished writing data");
+//   });
 // };
 
 makeCSV();
+// makeArray();
