@@ -1,3 +1,4 @@
+require("newrelic");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const express = require("express");
@@ -16,11 +17,11 @@ mongoose.connect(
 );
 
 app.use(cors());
-// app.use(express.static(`${__dirname}/../public`));
+app.use(express.static(`${__dirname}/../public`));
 
-// app.get("/:urlId", (req, res) => {
-//   res.sendFile(path.join(`${__dirname}/../public/index.html`));
-// });
+app.get("/:urlId", (req, res) => {
+  res.sendFile(path.join(`${__dirname}/../public/index.html`));
+});
 
 app.use(
   "/graphql",
