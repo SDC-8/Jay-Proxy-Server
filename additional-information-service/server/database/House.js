@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const houseSchema = new mongoose.Schema({
-  id: Number,
-  address: String,
-  city: String,
-  zip: Number,
-  zestimate: [Number],
-  beds: Number,
-  baths: Number,
-  sqFt: Number,
-  status: String,
-  taxAssessment: Number
-});
+// const houseSchema = new mongoose.Schema({
+//   id: Number,
+//   address: String,
+//   city: String,
+//   zip: Number,
+//   zestimate: [Number],
+//   beds: Number,
+//   baths: Number,
+//   sqFt: Number,
+//   status: String,
+//   taxAssessment: Number
+// });
 
-const House = mongoose.model("House", houseSchema);
+// const House = mongoose.model("House", houseSchema);
 
-module.exports = House;
+// module.exports = House;
