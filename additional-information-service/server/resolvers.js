@@ -1,4 +1,5 @@
 const House = require("./database/House.js");
+const HousePG = require("./database/queryPG");
 
 const resolvers = {
   Query: {
@@ -6,7 +7,8 @@ const resolvers = {
       return await House.find();
     },
     async getSome(dummy, numObj) {
-      return await House.find({ id: { $in: numObj.num } });
+      // return await House.find({ id: { $in: numObj.num } });
+      return await HousePG.read(numObj.num);
     }
   },
   Mutation: {
