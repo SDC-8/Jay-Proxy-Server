@@ -1,6 +1,12 @@
-import React from 'react';
-import ZestimateDetails from './ZestimateDetails.js';
-import Template from './Template.js';
+import React from "react";
+import Loadable from "react-loadable";
+import Loading from "./Loading";
+// import ZestimateDetails from "./ZestimateDetails.js";
+const ZestimateDetailComponent = Loadable({
+  loader: () => import("./ZestimateDetails"),
+  loading: Loading
+});
+import Template from "./Template.js";
 
 const Home = class extends React.PureComponent {
   constructor(props) {
@@ -8,9 +14,14 @@ const Home = class extends React.PureComponent {
     this.state = {
       zestimateInside: false,
       selected: 10,
+      zestimateArray: []
     };
     this.expandHome = this.expandHome.bind(this);
     this.getSelected = this.getSelected.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ zestimateArray: zestHistory() });
   }
 
   expandHome() {
@@ -22,8 +33,8 @@ const Home = class extends React.PureComponent {
   }
 
   render() {
-    console.log(this.props);
-    const zestimate = this.props.current.zestimate;
+    // const zestimate = this.props.current.zestimate;
+    const zestimate = this.state.zestimateArray;
     const currentZest = zestimate[zestimate.length - 1];
     const low = zestimate.slice(-1)[0] - 29374;
     const high = zestimate.slice(-1)[0] + 28612;
@@ -33,7 +44,8 @@ const Home = class extends React.PureComponent {
     ).toFixed(2);
     const forecast = high + 7298;
     const forecastChange = (forecast / currentZest - 1).toFixed(2);
-    const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const numberWithCommas = x =>
+      x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
     return (
       <div id="home-main-container">
@@ -54,11 +66,7 @@ const Home = class extends React.PureComponent {
                 <a tabIndex="0" id="zestimate-A_6" />
               </div>
               <div id="zestimate-range-value">
-                $
-                {numberWithCommas(low)}
-                {' '}
-- $
-                {numberWithCommas(high)}
+                ${numberWithCommas(low)} - ${numberWithCommas(high)}
               </div>
             </div>
           </div>
@@ -66,7 +74,7 @@ const Home = class extends React.PureComponent {
             <span
               id="zestimate-change-image-container"
               className={
-                lastMonth > 0 ? 'zestimate-change-up' : 'zestimate-change-down'
+                lastMonth > 0 ? "zestimate-change-up" : "zestimate-change-down"
               }
             />
             <div id="zestimate-change-title-container">
@@ -74,18 +82,16 @@ const Home = class extends React.PureComponent {
               <div id="zestimate-change-value">
                 {lastMonth > 0
                   ? `$+${numberWithCommas(lastMonth)}`
-                  : `-$${numberWithCommas(Math.abs(lastMonth))}`}
-                {' '}
+                  : `-$${numberWithCommas(Math.abs(lastMonth))}`}{" "}
                 <span
                   id="zestimate-change-percentage"
                   className={
                     lastMonth < 0
-                      ? 'zestimate-percentage-decrease'
-                      : 'zestimate-percentage-increase'
+                      ? "zestimate-percentage-decrease"
+                      : "zestimate-percentage-increase"
                   }
                 >
-                  (
-                  {lastMonthChange}
+                  ({lastMonthChange}
                   %)
                 </span>
               </div>
@@ -100,15 +106,13 @@ const Home = class extends React.PureComponent {
               </div>
               <div id="zestimate-forecast-value-container">
                 <span id="zestimate-forecast-value">
-                  $
-                  {numberWithCommas(forecast)}
-                  {' '}
+                  ${numberWithCommas(forecast)}{" "}
                   <span
                     id="zestimate-forecast-percentage"
                     className={
                       forecast > high
-                        ? 'zestimate-percentage-increase'
-                        : 'zestimate-percentage-decrease'
+                        ? "zestimate-percentage-increase"
+                        : "zestimate-percentage-decrease"
                     }
                   >
                     (+
@@ -124,14 +128,12 @@ const Home = class extends React.PureComponent {
         <div id="zestimate-history-container">
           {!this.state.zestimateInside && (
             <a onClick={this.expandHome} id="zestimate-history-title">
-              Zestimate history &amp; details
-              {' '}
-              <b>&or;</b>
+              Zestimate history &amp; details <b>&or;</b>
             </a>
           )}
         </div>
         {this.state.zestimateInside && (
-          <ZestimateDetails
+          <ZestimateDetailComponent
             status={this.props.status}
             graph={this.state.zestimateInside}
             getSelected={this.getSelected}
@@ -144,4 +146,43 @@ const Home = class extends React.PureComponent {
   }
 };
 
-export default Template(Home, 'Home');
+const zestHistory = () => {
+  const random = num => Math.ceil(Math.random() * num);
+  let total = 300000;
+  const years = 8 + random(2);
+  const months = random(12);
+  let count = 0;
+  const spike = [12, 7, 12, 5, 8, 5, 14, 3, 19, 1000];
+  const slope = [
+    -4000,
+    -3000,
+    -1000,
+    2000,
+    5000,
+    2000,
+    5000,
+    3000,
+    10000,
+    7000,
+    700,
+    -700
+  ];
+  let moreSlope = 0;
+
+  return Array.from({ length: years * 12 + months }, () => {
+    count++;
+    if (count % spike[0] === 0) {
+      const rand = random(4);
+      moreSlope = rand > 2 ? 2000 : rand === 2 ? -2000 : 0;
+      if (spike[0] === 14) {
+        moreSlope = 8000;
+      }
+      spike.shift();
+    }
+    total += slope[Math.floor(count / 12)] + moreSlope;
+
+    return total + random(7000);
+  });
+};
+
+export default Template(Home, "Home");

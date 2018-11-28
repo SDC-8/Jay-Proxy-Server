@@ -1,13 +1,13 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import ComparableHomes from './ComparableHomes';
-import LocalSalePrices from './LocalSalePrices';
-import ZestimateChart from './ZestimateChart.js';
-import GraphNavbar from './GraphNavbar.js';
-import LocalTaxAssessments from './LocalTaxAssessments.js';
-import MarketAppreciation from './MarketAppreciation.js';
-import { HouseIdContext } from '../Main';
+import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import ComparableHomes from "./ComparableHomes";
+import LocalSalePrices from "./LocalSalePrices";
+// import ZestimateChart from "./ZestimateChart.js";
+// import GraphNavbar from "./GraphNavbar.js";
+import LocalTaxAssessments from "./LocalTaxAssessments.js";
+import MarketAppreciation from "./MarketAppreciation.js";
+import { HouseIdContext } from "../Main";
 
 export default class ZestimateDetails extends React.PureComponent {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class ZestimateDetails extends React.PureComponent {
       comparableAverage: 0,
       localSaleAverage: 0,
       recalculate: true,
-      houses: [],
+      houses: []
     };
     this.expandComparable = this.expandComparable.bind(this);
     this.expandLocalSale = this.expandLocalSale.bind(this);
@@ -31,7 +31,7 @@ export default class ZestimateDetails extends React.PureComponent {
   expandComparable() {
     this.setState({
       comparableHomes: !this.state.comparableHomes,
-      recalculate: false,
+      recalculate: false
     });
   }
 
@@ -55,12 +55,11 @@ export default class ZestimateDetails extends React.PureComponent {
             query={gql`
               query getTen($num: [Int]!) {
                 getSome(num: $num) {
-                  _id
+                  id
                   address
                   beds
                   baths
                   sqFt
-                  zestimate
                   status
                   taxAssessment
                 }
@@ -70,45 +69,57 @@ export default class ZestimateDetails extends React.PureComponent {
           >
             {({ loading, error, data }) => {
               if (loading) {
-                return 'Loading...';
+                return "Loading...";
               }
               if (error) {
                 return `Error! ${error.message}`;
               }
               data = data.getSome;
 
-              const numberWithCommas = x => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              // load zestHistory() into data
+              data.forEach(d => {
+                d["zestimate"] = zestHistory();
+              });
+
+              const numberWithCommas = x =>
+                x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
               if (!this.state.comparableAverage && this.state.recalculate) {
-                this.state.houses = data;
+                console.log("Data: ", data);
+                // this.state.houses = data;
+                // console.log('Houses: ', this.state.);
                 this.state.comparableAverage = numberWithCommas(
                   Math.floor(
                     data
                       .slice(0, 10)
                       .reduce(
-                        (acc, cur) => acc + cur.zestimate[cur.zestimate.length - 1],
-                        0,
-                      ) / 10,
-                  ),
+                        (acc, cur) =>
+                          acc + cur.zestimate[cur.zestimate.length - 1],
+                        0
+                      ) / 10
+                  )
                 );
                 this.state.localSaleAverage = numberWithCommas(
                   Math.floor(
                     data
                       .slice(10, 20)
                       .reduce(
-                        (acc, cur) => acc + cur.zestimate[cur.zestimate.length - 1],
-                        0,
-                      ) / 10,
-                  ),
+                        (acc, cur) =>
+                          acc + cur.zestimate[cur.zestimate.length - 1],
+                        0
+                      ) / 10
+                  )
                 );
               }
 
+              currentHouse.zestimate = zestHistory();
               currentHouse.taxAssessment = Math.floor(
-                currentHouse.taxAssessment,
+                currentHouse.taxAssessment
               );
 
               const lastSold = currentHouse.zestimate.slice(-49)[0];
-              const marketAppValue = currentHouse.zestimate[currentHouse.zestimate.length - 1];
+              const marketAppValue =
+                currentHouse.zestimate[currentHouse.zestimate.length - 1];
 
               return (
                 <div id="expand-zestimate-details-container">
@@ -134,8 +145,7 @@ export default class ZestimateDetails extends React.PureComponent {
                               Comparable homes
                             </span>
                             <span id="comparable-homes-average">
-                              $
-                              {this.state.comparableAverage}
+                              ${this.state.comparableAverage}
                             </span>
                             {this.state.comparableHomes ? (
                               <img
@@ -154,7 +164,7 @@ export default class ZestimateDetails extends React.PureComponent {
                       {this.state.comparableHomes && (
                         <ComparableHomes
                           // comparable={this.props.comparable}
-                          houses={this.state.houses}
+                          houses={data}
                         />
                       )}
                       <section
@@ -167,12 +177,11 @@ export default class ZestimateDetails extends React.PureComponent {
                           <div className="zestimate-detail-title">
                             <span className="zestimate-detail-label">
                               Local tax assessments
-                            </span>
-                            {' '}
+                            </span>{" "}
                             <span id="local-sale-prices-average">
                               $
                               {numberWithCommas(
-                                Math.floor(currentHouse.taxAssessment),
+                                Math.floor(currentHouse.taxAssessment)
                               )}
                             </span>
                             {this.state.localTaxAssessments ? (
@@ -205,11 +214,9 @@ export default class ZestimateDetails extends React.PureComponent {
                           <div className="zestimate-detail-title">
                             <span className="zestimate-detail-label">
                               Market appreciation
-                            </span>
-                            {' '}
+                            </span>{" "}
                             <span id="local-sale-prices-average">
-                              $
-                              {numberWithCommas(marketAppValue)}
+                              ${numberWithCommas(marketAppValue)}
                             </span>
                             {this.state.marketAppreciation ? (
                               <img
@@ -241,11 +248,9 @@ export default class ZestimateDetails extends React.PureComponent {
                           <div className="zestimate-detail-title">
                             <span className="zestimate-detail-label">
                               Local sale prices
-                            </span>
-                            {' '}
+                            </span>{" "}
                             <span id="local-sale-prices-average">
-                              $
-                              {this.state.localSaleAverage}
+                              ${this.state.localSaleAverage}
                             </span>
                             {this.state.localSalePrices ? (
                               <img
@@ -272,7 +277,7 @@ export default class ZestimateDetails extends React.PureComponent {
                       >
                         Add seller comment
                       </a>
-                      {this.props.graph && (
+                      {/* {this.props.graph && (
                         <GraphNavbar
                           selected={this.props.selected}
                           handleClick={this.props.getSelected}
@@ -280,13 +285,13 @@ export default class ZestimateDetails extends React.PureComponent {
                       )}
                       {this.props.graph && (
                         <ZestimateChart selected={this.props.selected} />
-                      )}
+                      )} */}
                       <a
                         id="close-zestimate-details"
                         onClick={this.props.collapse}
                       >
                         Close
-                        {'  '}
+                        {"  "}
                         <span id="close-zestimate-details-icon">
                           <b>^</b>
                         </span>
@@ -302,3 +307,42 @@ export default class ZestimateDetails extends React.PureComponent {
     );
   }
 }
+
+const zestHistory = () => {
+  const random = num => Math.ceil(Math.random() * num);
+  let total = 300000;
+  const years = 8 + random(2);
+  const months = random(12);
+  let count = 0;
+  const spike = [12, 7, 12, 5, 8, 5, 14, 3, 19, 1000];
+  const slope = [
+    -4000,
+    -3000,
+    -1000,
+    2000,
+    5000,
+    2000,
+    5000,
+    3000,
+    10000,
+    7000,
+    700,
+    -700
+  ];
+  let moreSlope = 0;
+
+  return Array.from({ length: years * 12 + months }, () => {
+    count++;
+    if (count % spike[0] === 0) {
+      const rand = random(4);
+      moreSlope = rand > 2 ? 2000 : rand === 2 ? -2000 : 0;
+      if (spike[0] === 14) {
+        moreSlope = 8000;
+      }
+      spike.shift();
+    }
+    total += slope[Math.floor(count / 12)] + moreSlope;
+
+    return total + random(7000);
+  });
+};
