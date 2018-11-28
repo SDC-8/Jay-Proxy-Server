@@ -1,12 +1,12 @@
-import React from 'react';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import Main from '../Main';
+import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import Main from "../Main";
 
 export const PreQuery = () => {
   let rand = [Math.floor(Math.random() * 100)];
-  const houseId = Number(window.location.pathname.replace(/\//, ''));
-  if (houseId && houseId >= 0 && houseId < 100) {
+  const houseId = Number(window.location.pathname.replace(/\//, ""));
+  if (houseId && houseId >= 0 && houseId < 10000000) {
     rand = [houseId];
   }
   return (
@@ -16,7 +16,6 @@ export const PreQuery = () => {
           getSome(num: $num) {
             address
             city
-            zestimate
             beds
             baths
             sqFt

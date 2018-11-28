@@ -1,10 +1,10 @@
-import React from 'react';
-import Home from './components/Home.js';
-import Mortgage from './components/Mortgage.js';
+import React from "react";
+import Home from "./components/Home.js";
+// import Mortgage from "./components/Mortgage.js";
 
 export const HouseIdContext = React.createContext({
   houseArr: [],
-  currentHouse: {},
+  currentHouse: {}
 });
 
 export default class Main extends React.PureComponent {
@@ -15,7 +15,7 @@ export default class Main extends React.PureComponent {
       mortgage: true,
       houseList: [this.props.rand],
       currentHouse: this.props.current.getSome[0],
-      comparableHomes: [],
+      comparableHomes: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -44,7 +44,7 @@ export default class Main extends React.PureComponent {
             expand={this.handleClick}
             current={this.state.currentHouse}
           />
-          <Mortgage status={this.state.mortgage} expand={this.handleClick} />
+          {/* <Mortgage status={this.state.mortgage} expand={this.handleClick} /> */}
         </div>
       </HouseIdContext.Provider>
     );
