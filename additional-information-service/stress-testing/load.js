@@ -78,15 +78,15 @@ import { Rate } from "k6/metrics";
 // }
 
 export let options = {
-  duration: "1m",
-  vus: 10
+  duration: "15m",
+  vus: 200
 };
 
 // let headers = { "Content-Type": "application/json" };
 
 export default function() {
   http.get(
-    "http://localhost:8888/9999985"
+    "http://localhost:8082/9999985"
     // JSON.stringify({
     //   operationName: "Current",
     //   query:
