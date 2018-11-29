@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Only-the-Best/Brian-Louie-Proxy#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "newrelic": "^4.11.0"
   }
 }

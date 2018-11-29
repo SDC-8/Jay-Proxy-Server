@@ -1,7 +1,6 @@
 import React from "react";
 import Loadable from "react-loadable";
 import Loading from "./Loading";
-// import ZestimateDetails from "./ZestimateDetails.js";
 const ZestimateDetailComponent = Loadable({
   loader: () => import("./ZestimateDetails"),
   loading: Loading
