@@ -1,15 +1,18 @@
 const { Pool } = require("pg");
 
+// const pool = new Pool({
+//   connectionString: "postgres://jdeguzman:@localhost:5432/housingdb",
+//   max: 20
+// });
+
 const pool = new Pool({
-  connectionString: "postgres://jdeguzman:@localhost:5432/housingdb",
+  host: process.env.HOUSING_DB,
+  port: process.env.DB_PORT,
+  database: "housingdb",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   max: 20
 });
-
-// const connection = "postgres://jdeguzman:@localhost:5432/housingdb";
-// const db = new pg.Client(connection);
-
-// // connect here
-// db.connect();
 
 module.exports = {
   create: () => {
