@@ -1,11 +1,11 @@
-const House = require("./database/House.js");
+// const House = require("./database/House.js");
 const HousePG = require("./database/queryPG");
 
 const resolvers = {
   Query: {
-    async allHouses() {
-      return await House.find();
-    },
+    // async allHouses() {
+    //   return await House.find();
+    // },
     async getSome(dummy, numObj) {
       // return await House.find({ id: { $in: numObj.num } });
       return await HousePG.read(numObj.num);

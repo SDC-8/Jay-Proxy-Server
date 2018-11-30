@@ -1,5 +1,5 @@
 const ExpressCassandra = require("express-cassandra");
-const houseSchema = require("./models/HouseModel.js");
+const houseSchema = require("../server/database/models/HouseModel.js");
 
 let models = ExpressCassandra.createClient({
   clientOptions: {

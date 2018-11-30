@@ -1,10 +1,5 @@
 const { Pool } = require("pg");
 
-// const pool = new Pool({
-//   connectionString: "postgres://jdeguzman:@localhost:5432/housingdb",
-//   max: 20
-// });
-
 const pool = new Pool({
   host: process.env.HOUSING_DB,
   port: process.env.DB_PORT,
