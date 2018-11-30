@@ -1,4 +1,3 @@
-// const House = require("./database/House.js");
 const HousePG = require("./database/queryPG");
 
 const resolvers = {
