@@ -5,8 +5,8 @@ const graphqlHTTP = require("express-graphql");
 const path = require("path");
 const schema = require("./schema.js");
 
-const port = 3003;
-// const port = process.argv[2] || 8080;
+// const port = 3003;
+// // const port = process.argv[2] || 8080;
 
 const app = express();
 
