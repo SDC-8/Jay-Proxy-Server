@@ -7,17 +7,9 @@
     "start": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dreambnb34/reviews-module-proxy-server.git"
-  },
   "keywords": [],
-  "author": "",
+  "author": "Jay De Guzman",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dreambnb34/reviews-module-proxy-server/issues"
-  },
-  "homepage": "https://github.com/Dreambnb34/reviews-module-proxy-server#readme",
   "dependencies": {
     "express": "^4.16.4",
     "morgan": "^1.9.1"

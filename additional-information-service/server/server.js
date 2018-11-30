@@ -35,10 +35,12 @@ app.use(
 // Take out x-powered-by
 app.disable("x-powered-by");
 
-app.listen(
-  port,
-  /*"192.168.7.194",*/ () =>
-    console.log(
-      `Express GraphQL Server Now Running On localhost:${port}/graphql`
-    )
-);
+// app.listen(
+//   port,
+//   /*"192.168.7.194",*/ () =>
+//     console.log(
+//       `Express GraphQL Server Now Running On localhost:${port}/graphql`
+//     )
+// );
+
+module.exports = app;
