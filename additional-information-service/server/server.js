@@ -1,3 +1,4 @@
+// require("newrelic");
 const cors = require("cors");
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
@@ -17,7 +18,7 @@ app.get("*.js", function(req, res, next) {
   next();
 });
 
-app.use(express.static(`${__dirname}/../public`));
+app.use(express.static("public"));
 
 app.get("/:urlId", (req, res) => {
   res.sendFile(path.join(`${__dirname}/public/index.html`));

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-require("newrelic");
 const app = require("../server");
 var express = require("express");
 var morgan = require("morgan");
