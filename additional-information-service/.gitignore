@@ -80,3 +80,5 @@ Icon
 ./server/database/test.csv
 
 *.csv
+
+/stress-testing/load.js
