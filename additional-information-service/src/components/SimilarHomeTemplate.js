@@ -15,7 +15,7 @@ const SimilarHomeTemplate = ({ houses, start, stop }) => {
     return (
       <div className="similar-zestimate-container" key={idx}>
         <a href={`/${house._id}`}>
-          <img
+          {/* <img
             src={
               !(start + idx >= 6 && start + idx <= 8)
                 ? imageUrl[start + idx]
@@ -23,12 +23,12 @@ const SimilarHomeTemplate = ({ houses, start, stop }) => {
             }
             className="zestimate-similar-image"
             alt=""
-          />
+          /> */}
         </a>
         <div className="zestimate-similar-info-container">
           <h5 className="zestimate-similar-status-header">
             <div className="zestimate-similar-status-div">
-              <span className="zestimate-similar-status-icon">
+              {/* <span className="zestimate-similar-status-icon">
                 <img
                   className="status-icon"
                   src={
@@ -37,7 +37,7 @@ const SimilarHomeTemplate = ({ houses, start, stop }) => {
                       : "https://s3-us-west-1.amazonaws.com/housing-hr/yellow-sold.png"
                   }
                 />
-              </span>{" "}
+              </span>{" "} */}
               {house.status === "For Sale"
                 ? "FOR SALE"
                 : `SOLD ${idx + 1}/${idx * 2 + 3}/${2017 + (idx % 2)}`}

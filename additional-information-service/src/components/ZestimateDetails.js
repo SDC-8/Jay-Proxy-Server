@@ -3,8 +3,6 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import ComparableHomes from "./ComparableHomes";
 import LocalSalePrices from "./LocalSalePrices";
-// import ZestimateChart from "./ZestimateChart.js";
-// import GraphNavbar from "./GraphNavbar.js";
 import LocalTaxAssessments from "./LocalTaxAssessments.js";
 import MarketAppreciation from "./MarketAppreciation.js";
 import { HouseIdContext } from "../Main";
