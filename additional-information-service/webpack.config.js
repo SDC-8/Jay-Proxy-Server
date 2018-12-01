@@ -1,5 +1,5 @@
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
+// const CompressionPlugin = require("compression-webpack-plugin");
 const webpack = require("webpack");
 
 // const VENDOR_LIBS = [
@@ -28,7 +28,6 @@ const webpack = require("webpack");
 // const UNUSED_LIBS = ["mongoose", "mongoose-simple-random", "sstable"];
 
 module.exports = {
-  devtool: "source-map",
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
@@ -42,8 +41,8 @@ module.exports = {
           comments: false // remove all comments
         }
       }
-    }),
-    new CompressionPlugin()
+    })
+    // new CompressionPlugin()
   ],
   // entry: __dirname + '/src/index.js',
   entry: {
@@ -67,6 +66,6 @@ module.exports = {
   },
   output: {
     filename: "bundle.js",
-    path: __dirname + "/public"
+    path: __dirname + "/server/public"
   }
 };
