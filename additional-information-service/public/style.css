@@ -6,7 +6,7 @@
   width: 654px;
   column-rule-color: rgb(68, 68, 68);
   font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 .header-toggle {
@@ -37,8 +37,9 @@
   height: 180px;
   width: 654px;
   align-items: center;
-  background: rgb(226, 239, 252) url('https://s3-us-west-1.amazonaws.com/housing-hr/zillow-robot.png') no-repeat scroll 100%
-  100% / 180px padding-box border-box;
+  background: rgb(226, 239, 252)
+    url("https://s3-us-west-1.amazonaws.com/housing-hr/zillow-robot.png")
+    no-repeat scroll 100% 100% / 180px padding-box border-box;
 }
 
 #home-banner-text {
@@ -64,8 +65,8 @@
   display: block;
   height: 56px;
   background: rgba(0, 0, 0, 0)
-  url('https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-house-icon.svg')
-  repeat scroll 0% 0% / 56px 56px padding-box border-box;
+    url("https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-house-icon.svg")
+    repeat scroll 0% 0% / 56px 56px padding-box border-box;
   margin: 0px 71px 0px 70.9844px;
 }
 
@@ -80,7 +81,7 @@
   text-transform: uppercase;
   width: 192.984px;
   font: normal normal 700 normal 13px / 19.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 #zestimate-range-value {
@@ -106,14 +107,14 @@
 
 .zestimate-change-down {
   background: rgba(0, 0, 0, 0)
-  url('https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-down-icon.svg')
-  repeat scroll 0% 0% / 56px 56px padding-box border-box;
+    url("https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-down-icon.svg")
+    repeat scroll 0% 0% / 56px 56px padding-box border-box;
 }
 
 .zestimate-change-up {
   background: rgba(0, 0, 0, 0)
-  url('https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-up-icon.svg')
-  repeat scroll 0% 0% / 56px 56px padding-box border-box;
+    url("https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-up-icon.svg")
+    repeat scroll 0% 0% / 56px 56px padding-box border-box;
 }
 
 #zestimate-change-title-container {
@@ -128,7 +129,7 @@
   text-transform: uppercase;
   width: 192.984px;
   font: normal normal 700 normal 13px / 19.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 #zestimate-change-value {
@@ -157,8 +158,8 @@
   display: block;
   height: 56px;
   background: rgba(0, 0, 0, 0)
-  url('https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-forecast-icon.svg')
-  repeat scroll 0% 0% / 56px 56px padding-box border-box;
+    url("https://s3-us-west-1.amazonaws.com/housing-hr/zestimate-forecast-icon.svg")
+    repeat scroll 0% 0% / 56px 56px padding-box border-box;
   margin: 0px 71px 0px 70.9844px;
 }
 
@@ -170,7 +171,8 @@
 }
 
 #zestimate-forecast-value {
-  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
 }
 
 #zestimate-history-container {
@@ -194,13 +196,12 @@
   font: normal normal 700 normal 20px / 30px Gotham, gotham, Verdana, sans-serif;
 }
 
-
 #estimate-based-on-title {
   height: 19px;
   text-transform: uppercase;
   width: 654px;
   font: normal normal 700 normal 13px / 19.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
   margin: 40px 0px 0px;
 }
 
@@ -208,7 +209,7 @@
   height: auto;
   width: 654px;
   font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 .expand-subcontainer {
@@ -217,7 +218,7 @@
   width: 654px;
   border-bottom: 1px solid rgb(170, 170, 170);
   font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 .zestimate-detail-summary {
@@ -232,13 +233,13 @@
 .zestimate-detail-title {
   cursor: pointer;
   font: normal normal 700 normal 15px / 16.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 .zestimate-detail-label {
   cursor: pointer;
   font: normal normal 700 normal 15px / 16.5px Gotham, gotham, Verdana,
-  sans-serif;
+    sans-serif;
 }
 
 #comparable-homes-average {
@@ -333,7 +334,8 @@
   margin: -15px 0px 0px;
 }
 
-.zestimate-similar-stats-container, .zestimate-similar-stats-info {
+.zestimate-similar-stats-container,
+.zestimate-similar-stats-info {
   font: normal normal 700 normal 15px / 20px Gotham, gotham, Verdana, sans-serif;
 }
 
@@ -344,7 +346,7 @@
   font: normal normal 400 normal 15px / 20px Gotham, gotham, Verdana, sans-serif;
 }
 
-.zestimate-similar-proportional-stat{
+.zestimate-similar-proportional-stat {
   position: absolute;
   font: normal normal 400 normal 20px / 15px Gotham, gotham, Verdana, sans-serif;
   margin: 25px 0px 15px;
@@ -390,7 +392,7 @@
   float: left;
 }
 
-.zestimate-subdetail-value-name{
+.zestimate-subdetail-value-name {
   float: right;
   text-align: right;
 }
@@ -402,36 +404,43 @@
 #local-sale-container {
   height: 1770px;
   width: 654px;
-  font: normal normal 700 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 700 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
 }
 
 .zestimate-subexpand-explanation {
   height: 88px;
   width: 654px;
-  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
 }
 
-#local-sale-descriptionSPAN_4, #local-sale-descriptionSPAN_5 {
-  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+#local-sale-descriptionSPAN_4,
+#local-sale-descriptionSPAN_5 {
+  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
 }
 
 .zestimate-accuracy-link {
   color: rgb(0, 116, 228);
   column-rule-color: rgb(0, 116, 228);
-  font: normal normal 300 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 300 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
 }
 
 .zestimate-compare-container {
   height: 193px;
   width: 654px;
-  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 400 normal 15px / 22.5px Gotham, gotham, Verdana,
+    sans-serif;
   padding: 20px 0px 0px;
 }
 
 .how-calculated-header {
   height: 19px;
   width: 654px;
-  font: normal normal 800 normal 13px / 19.5px Gotham, gotham, Verdana, sans-serif;
+  font: normal normal 800 normal 13px / 19.5px Gotham, gotham, Verdana,
+    sans-serif;
   margin: 0px 0px 15px;
 }
 
@@ -439,7 +448,8 @@
   padding: 30px 0px 0px;
 }
 
-.zestimate-compare-value, .zestimate-compare-value-after{
+.zestimate-compare-value,
+.zestimate-compare-value-after {
   display: inline-block;
   text-align: center;
   vertical-align: top;
@@ -447,7 +457,8 @@
   margin: 0px 0px 15px;
 }
 
-.zestimate-compare-before-title, .zestimate-compare-after {
+.zestimate-compare-before-title,
+.zestimate-compare-after {
   display: block;
   width: 196.188px;
   font: normal normal 100 normal 12px / 18px Gotham, gotham, Verdana, sans-serif;
@@ -480,7 +491,7 @@
   left: 560px;
 }
 
-#close-zestimate-details{
+#close-zestimate-details {
   cursor: pointer;
   box-sizing: border-box;
   color: rgb(0, 116, 228);
@@ -494,10 +505,10 @@
   display: flex;
 }
 
-
 #mortgage-select {
   background-position: 100% -28px;
-  box-shadow: rgb(250, 250, 250) 0px 2px 2px 0px inset, rgb(98, 174, 247) 0px 0px 0px 0px;
+  box-shadow: rgb(250, 250, 250) 0px 2px 2px 0px inset,
+    rgb(98, 174, 247) 0px 0px 0px 0px;
   color: rgb(68, 68, 68);
   height: 20px;
   min-height: 0px;
@@ -531,7 +542,7 @@
   position: relative;
   margin-left: -200px;
   margin-top: -120px;
-    z-index: -1;
+  z-index: -1;
 }
 
 #mortgage-chart-legend {
