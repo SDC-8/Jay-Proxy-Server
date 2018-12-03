@@ -6,7 +6,7 @@ import { PreQuery } from "./components/PreQuery.js";
 
 // Once up on Docker inside EC2, have to go to fully qualified url for container
 const client = new ApolloClient({
-  uri: `/graphql`
+  uri: `http://additional-information-load-557dd12d427e74f4.elb.us-east-1.amazonaws.com/graphql`
 });
 
 ReactDOM.render(
