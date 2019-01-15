@@ -71,30 +71,11 @@ const seedFunc = i => {
   },${ourObj.baths},${ourObj.sqFt},${ourObj.status},${ourObj.taxAssessment}\n`;
 };
 
-// const makeCSV = async () => {
-//   console.time("makedata");
-//   // let csvStream = csv.createWriteStream({ headers: false });
-//   // let readStream = fs.createReadStream(csvStream);
-//   // let writableStream = fs.createWriteStream("test-4.csv");
-
-//   // // writableStream.on("finish", () => {
-//   // //   console.log("done");
-//   // // });
-
-//   // for (let i = 0; i < 10000000; i++) {
-//   //   csvStream.write(seedFunc());
-//   //   csvStream.pipe(readStream).pipe(writableStream);
-//   // }
-//   // csvStream.end();
-
-//   console.timeEnd("makedata");
-// };
-
 const { Readable } = require("stream");
 const inStream = new Readable({
   read() {
     this.push(seedFunc());
-    if (count === 10000000) {
+    if (count === 80000000) {
       this.push(null);
       console.timeEnd("MainTime");
     }
@@ -102,5 +83,5 @@ const inStream = new Readable({
 });
 
 console.time("MainTime");
-let writableStream = fs.createWriteStream("test-4.csv");
+let writableStream = fs.createWriteStream("test-5.csv");
 inStream.pipe(writableStream);
